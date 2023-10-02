@@ -5,7 +5,7 @@ on:
     - main
   schedule:
     # 定期実行する時間・・・①
-    - cron: '45 21 * * *'
+    - cron: '30 21 * * *'
 
 jobs:
   build:
@@ -23,16 +23,11 @@ jobs:
         run: |
           # pip更新
           python -m pip install --upgrade pip
-          pip install json
-          pip install os
+          pip install simplejson
           pip install pandas
           pip install dotenv
-          pip install urllib.request
-          pip install datetime
           pip install pytz
-          pip install linebot
-          pip install linebot.models
-          pip install linebot.exceptions
+          pip install line-bot-sdk
           # 必要なパッケージインストール・・・②
       - name: env
         env:
