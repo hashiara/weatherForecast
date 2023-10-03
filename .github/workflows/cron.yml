@@ -2,7 +2,8 @@
 name: housework_bot
 on:
   push:
-    - main
+    branches:
+      - main
   schedule:
     # 定期実行する時間・・・①
     - cron: 30 21 * * *
