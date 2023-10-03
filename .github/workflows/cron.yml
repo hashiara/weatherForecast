@@ -5,7 +5,11 @@ on:
     - main
   schedule:
     # 定期実行する時間・・・①
+<<<<<<< HEAD:cron.yml
+    - cron: 30 21 * * *
+=======
     - cron: '30 21 * * *'
+>>>>>>> 89872936d991c6c3e609693cf8353f21c8020250:.github/workflows/cron.yml
 
 jobs:
   build:
