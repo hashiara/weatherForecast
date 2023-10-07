@@ -40,15 +40,11 @@ jobs:
           pip install line-bot-sdk
 
       - name: Run script on push
-        if: ${{ steps.error3.outcome == 'failure' }}
         env:
           OWM_PLACE_ID: ${{ secrets.OWM_PLACE_ID }}
           OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
           LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}  
         run: |
-          echo "Error handling3"
-          echo ${{ steps.error3.outcome }}
-          exit 1
           chmod +x index.py
-          python3 index.py
+          python index.py

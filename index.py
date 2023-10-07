@@ -9,7 +9,7 @@ from linebot import LineBotApi
 from linebot.models import TextSendMessage
 from linebot.exceptions import LineBotApiError
 import pytz
-import sys
+# import sys
 
 def get_weather_icon(icon_str):
     if icon_str == "01d" or icon_str == "01n":
