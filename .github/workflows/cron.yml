@@ -1,8 +1,7 @@
 name: housework_bot
 on:
-  push:
-    branches: [ main ]
-    
+  push
+
   schedule:
     - cron: '30 21 * * *'
 
@@ -10,6 +9,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout code
