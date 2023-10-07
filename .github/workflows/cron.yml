@@ -25,19 +25,14 @@ jobs:
           python-version: 3.8
         id: error2
         continue-on-error: true
-        if: ${{ steps.error1.outcome == 'failure' }}
-        run: |
-          echo "Error handling1"
-          echo ${{ steps.error1.outcome }}
-          exit 1
 
       - name: Install dependencies
         id: error3
         continue-on-error: true
-        if: ${{ steps.error2.outcome == 'failure' }}
+        if: ${{ steps.error1.outcome == 'failure' }}
         run: |
-          echo "Error handling2"
-          echo ${{ steps.error2.outcome }}
+          echo "Error handling1"
+          echo ${{ steps.error1.outcome }}
           exit 1
           python -m pip install --upgrade pip
           pip install simplejson
