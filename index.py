@@ -65,6 +65,7 @@ def send_to_line(df):
 
 
 def main():
+    load_dotenv()  # .env ファイルから環境変数を読み込む
     url = "http://api.openweathermap.org/data/2.5/forecast"
     # id = os.getenv("OWM_PLACE_ID")
     # id = os.environ["OWM_PLACE_ID"]
@@ -100,5 +101,5 @@ def main():
         print('Error occurred: {}'.format(e))
 
 
-load_dotenv()
+# load_dotenv()
 main()
