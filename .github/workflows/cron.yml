@@ -1,42 +1,40 @@
-# ワークフロー名
 name: housework_bot
 on:
   push:
     branches:
       - main
   schedule:
-    # 定期実行する時間・・・①
     - cron: '30 21 * * *'
 
 jobs:
   build:
-    # Ubuntuの最新版環境内で処理を実行することを指定
     runs-on: ubuntu-latest
 
-    # 実行する処理＆コマンド指定
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
+
       - name: Install dependencies
         run: |
-          # pip更新
           python -m pip install --upgrade pip
           pip install simplejson
           pip install pandas
           pip install dotenv
           pip install pytz
           pip install line-bot-sdk
-          # 必要なパッケージインストール・・・②
+
       - name: env
         env:
           OWM_PLACE_ID: ${{ secrets.OWM_PLACE_ID }}
           OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
           LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+          
       - name: Run script on push
         if: github.event_name == 'push'
         run: python3 index.py
