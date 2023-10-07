@@ -37,7 +37,10 @@ jobs:
           OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
           LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
-      - name: Run script
-        run: |
-          # 定期実行するファイルを指定。・・・③
-          python3 index.py
+      - name: Run script on push
+        if: github.event_name == 'push'
+        run: python3 index.py
+
+      - name: Run script on schedule
+        if: github.event_name == 'schedule'
+        run: python3 index.py
