@@ -51,4 +51,5 @@ jobs:
           echo "Error handling3"
           echo ${{ steps.error3.outcome }}
           exit 1
+          chmod +x index.py
           python3 index.py
