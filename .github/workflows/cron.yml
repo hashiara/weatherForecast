@@ -36,9 +36,5 @@ jobs:
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
 
       - name: Run script on push
-        if: github.event_name == 'push'
-        run: python3 index.py
-
-      - name: Run script on schedule
-        if: github.event_name == 'schedule'
-        run: python3 index.py
+        run: |
+          python3 index.py
