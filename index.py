@@ -48,13 +48,13 @@ def send_to_line(df):
             texts.append("")
             count += 1
 
-    line_bot = LineBotApi(os.getenv("LINE_ACCESS_TOKEN"))
-    # line_bot = LineBotApi(os.environ["LINE_ACCESS_TOKEN"])
+    # line_bot = LineBotApi(os.getenv("LINE_ACCESS_TOKEN"))
+    line_bot = LineBotApi(os.environ["LINE_ACCESS_TOKEN"])
     # line_bot = LineBotApi(sys.argv[3])
         
     try:
-        line_bot.multicast(os.getenv("LINE_USER_ID").split(","), TextSendMessage(text="\n".join(texts)))
-        # line_bot.multicast(os.environ["LINE_USER_ID"].split(","), TextSendMessage(text="\n".join(texts)))
+        # line_bot.multicast(os.getenv("LINE_USER_ID").split(","), TextSendMessage(text="\n".join(texts)))
+        line_bot.multicast(os.environ["LINE_USER_ID"].split(","), TextSendMessage(text="\n".join(texts)))
         # line_bot.multicast(sys.argv[4].split(","), TextSendMessage(text="\n".join(texts)))
         print('成功')
     except LineBotApiError as e:
@@ -64,11 +64,11 @@ def send_to_line(df):
 
 def main():
     url = "http://api.openweathermap.org/data/2.5/forecast"
-    id = os.getenv("OWM_PLACE_ID")
-    # id = os.environ["OWM_PLACE_ID"]
+    # id = os.getenv("OWM_PLACE_ID")
+    id = os.environ["OWM_PLACE_ID"]
     # id = sys.argv[1]
-    api_key = os.getenv("OWM_API_KEY")
-    # api_key = os.environ["OWM_API_KEY"]
+    # api_key = os.getenv("OWM_API_KEY")
+    api_key = os.environ["OWM_API_KEY"]
     # api_key = sys.argv[2]
 
     res = urlopen(f"{url}?id={id}&appid={api_key}&lang=ja&units=metric").read()
