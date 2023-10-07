@@ -36,13 +36,8 @@ jobs:
       - name: Install dependencies
         id: error3
         continue-on-error: true
-        if: ${{ failure() && (steps.error1.outcome == 'failure' || steps.error2.outcome == 'failure') }}
+        if: ${{ steps.error1.outcome == 'failure' || steps.error2.outcome == 'failure' }}
         run: |
-          echo "Error handling1"
-          echo ${{ steps.error1.outcome }}
-          echo "Error handling2"
-          echo ${{ steps.error2.outcome }}
-          exit 1
           python -m pip install --upgrade pip
           pip install simplejson
           pip install pandas
