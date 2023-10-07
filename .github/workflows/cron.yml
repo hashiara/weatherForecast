@@ -2,12 +2,13 @@ name: housework_bot
 on:
   push:
     branches: [ main ]
+    
   schedule:
     - cron: '30 21 * * *'
 
 jobs:
   build:
-  
+
     runs-on: ubuntu-latest
 
     steps:
