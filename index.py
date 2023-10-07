@@ -47,10 +47,10 @@ def send_to_line(df):
             texts.append("")
             count += 1
 
-    line_bot = LineBotApi(os.getenv("LINE_ACCESS_TOKEN"))
+    line_bot = LineBotApi(os.environ["LINE_ACCESS_TOKEN"])
         
     try:
-        line_bot.multicast(os.getenv("LINE_USER_ID").split(","), TextSendMessage(text="\n".join(texts)))
+        line_bot.multicast(os.environ["LINE_USER_ID"].split(","), TextSendMessage(text="\n".join(texts)))
         print('成功')
     except LineBotApiError as e:
         print('send_to_line関数内でエラーが発生しました。')
@@ -59,8 +59,8 @@ def send_to_line(df):
 
 def main():
     url = "http://api.openweathermap.org/data/2.5/forecast"
-    id = os.getenv("OWM_PLACE_ID")
-    api_key = os.getenv("OWM_API_KEY")
+    id = os.environ["OWM_PLACE_ID"]
+    api_key = os.environ["OWM_API_KEY"]
 
     res = urlopen(f"{url}?id={id}&appid={api_key}&lang=ja&units=metric").read()
     res_json = json.loads(res)
