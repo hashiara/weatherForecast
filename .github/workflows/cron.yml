@@ -40,4 +40,4 @@ jobs:
       - name: Run script
         run: |
           # 定期実行するファイルを指定。・・・③
-          pipenv run python3 index.py
+          python3 index.py
