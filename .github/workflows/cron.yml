@@ -22,13 +22,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        id: error1
-        continue-on-error: true
+        # id: error1
+        # continue-on-error: true
         uses: actions/checkout@v2
         
       - name: Set up Python 3.8
-        id: error2
-        continue-on-error: true
+        # id: error2
+        # continue-on-error: true
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         id: error3
         continue-on-error: true
-        if: ${{ steps.error1.outcome == 'failure' || steps.error2.outcome == 'failure' }}
+        # if: ${{ steps.error1.outcome == 'failure' || steps.error2.outcome == 'failure' }}
         run: |
           python -m pip install --upgrade pip
           pip install simplejson
