@@ -1,6 +1,5 @@
 name: housework_bot
-on:
-  push
+on: [push]
 
   # schedule:
   #   - cron: '30 21 * * *'
