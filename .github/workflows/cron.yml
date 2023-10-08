@@ -1,11 +1,11 @@
 name: housework_bot
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
 
-  schedule:
-    - cron: '30 20 * * *'
+  # schedule:
+  #   - cron: '30 20 * * *'
 
 jobs:
 
