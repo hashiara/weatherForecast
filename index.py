@@ -67,9 +67,10 @@ def get_weather_icon(icon_str):
 # 文章内容を整形してLineに送信する関数
 def send_to_line(user_id, df):
     texts = []
-    for i, (today, data) in enumerate(df):
-        if i == 0:
-            texts.append(f"【{today}】")
+    for i, (tomorrow, data) in enumerate(df):
+        if i == 1:
+            texts.append("【明日の天気】")
+            texts.append(f"{tomorrow}\n")
             place = ""
 
             for _, d in data.iterrows():
@@ -121,6 +122,7 @@ def main():
             place_json = json.loads(place_data)
             city_name = place_json['name']
             
+            # 5日分の天気情報を取得
             arr_rj = []
             for rj in res_json["list"]:
                 conv_rj = {}
@@ -128,7 +130,7 @@ def main():
                 timestamp = datetime.fromtimestamp(rj["dt"], tz=timezone)
                 weekday_japanese = ["月", "火", "水", "木", "金", "土", "日"][timestamp.weekday()]
                 conv_rj["date"] = timestamp.strftime("%m月%d日 {}曜日".format(weekday_japanese))
-                conv_rj["place"] = f"★{city_name}の天気"
+                conv_rj["place"] = f"★{city_name}"
                 conv_rj["time"] = timestamp.strftime("%H")
                 conv_rj["description"] = rj["weather"][0]["description"]
                 conv_rj["icon"] = rj["weather"][0]["icon"]

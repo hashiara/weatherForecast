@@ -4,8 +4,9 @@ on:
   #   branches:
   #     - main
 
+  # +9時間の差があるので、この場合20時に実行される
   schedule:
-    - cron: '30 20 * * *'
+    - cron: '00 11 * * *'
 
 jobs:
 
