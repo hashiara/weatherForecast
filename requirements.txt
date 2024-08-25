@@ -1,0 +1,5 @@
+Flask
+python-dotenv
+line-bot-sdk
+argparse
+psycopg2
