@@ -1,6 +1,6 @@
 name: horoscope-batch
 on:
-  push:
+  # push:
     # branches:
     #   - main
     
