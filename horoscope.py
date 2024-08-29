@@ -58,6 +58,7 @@ def main():
             # 誕生日の人へバースデーメッセージ送信
             if today_md == birth_md:
                 birth_message = BIRTH_MESSAGE.format(user_name=user_name)
+                print(birth_message)
                 send_to_line(line_access_token, user_id, birth_message)
 
             # 星占いメッセージ送信
