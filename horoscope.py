@@ -56,6 +56,8 @@ def main():
             birth_md = birth.strftime("%m-%d")
 
             # 誕生日の人へバースデーメッセージ送信
+            print(today_md)
+            print(birth_md)
             if today_md == birth_md:
                 birth_message = BIRTH_MESSAGE.format(user_name=user_name)
                 print(birth_message)
