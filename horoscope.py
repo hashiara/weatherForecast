@@ -60,6 +60,7 @@ def main():
             print(birth_md)
             if today_md == birth_md:
                 birth_message = BIRTH_MESSAGE.format(user_name=user_name)
+                print("バースデー")
                 print(birth_message)
                 send_to_line(line_access_token, user_id, birth_message)
 
