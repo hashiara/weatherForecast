@@ -80,10 +80,17 @@ def main():
                         # 現在時刻が0時を過ぎていない
                         # rail['status']がlast_train_statusと異なる
                         # last_train_statusがNone
+                        print(current_time)
                         print(type(rail['status']))
                         print(rail['status'])
                         print(type(last_train_status))
                         print(last_train_status)
+                        if start_time <= current_time <= end_time:
+                            print("test1")
+                        if rail['status'] != last_train_status:
+                            print("test2")
+                        if last_train_status is None:
+                            print("test3")
                         if start_time <= current_time <= end_time and (rail['status'] != last_train_status or last_train_status is None):
                             print("いふ")
                             send_to_line(line_access_token, user_id, rail, formatted_last_updated, src)
