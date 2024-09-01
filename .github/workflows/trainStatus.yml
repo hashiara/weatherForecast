@@ -41,6 +41,7 @@ jobs:
           pip install psycopg2
           pip install python-dotenv
           pip install line-bot-sdk
+          pip install pytz
 
       - name: Run script on push
         env:
