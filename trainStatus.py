@@ -84,7 +84,7 @@ def main():
                         print(rail['status'])
                         print(type(last_train_status))
                         print(last_train_status)
-                        if start_time <= current_time <= end_time and rail['status'] != last_train_status:
+                        if start_time <= current_time <= end_time and (rail['status'] != last_train_status or last_train_status is None):
                             print("いふ")
                             send_to_line(line_access_token, user_id, rail, formatted_last_updated, src)
                             try:
