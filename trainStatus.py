@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from urllib.request import urlopen, Request
 import json
 from datetime import datetime, time
+import pytz
 from linebot.exceptions import LineBotApiError
 from linebot import LineBotApi
 from linebot.models import TextSendMessage
@@ -67,7 +68,9 @@ def main():
             formatted_last_updated = dt.strftime('%Y年%m月%d日 %H時%M分')
 
             # 時刻比較用
-            current_time = datetime.now().time()
+            tokyo_tz = pytz.timezone('Asia/Tokyo')
+            current_time = datetime.now(tokyo_tz).time()
+            # current_time = datetime.now().time()
             start_time = time(8, 0, 0)
             end_time = time(23, 59, 59)
             
