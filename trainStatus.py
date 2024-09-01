@@ -64,17 +64,18 @@ def main():
             src = res_json.get('src', {})
 
             # 取得した最新更新時刻のフォーマット変換
+            tokyo_tz = pytz.timezone('Asia/Tokyo')
             timestamp_s = last_updated / 1000
             print(timestamp_s)
             dt = datetime.fromtimestamp(timestamp_s)
             print(dt)
-            formatted_last_updated = dt.strftime('%Y年%m月%d日 %H時%M分')
+            tokyo_dt = dt.replace(tzinfo=pytz.utc).astimezone(tokyo_tz)
+            print(tokyo_dt)
+            formatted_last_updated = tokyo_dt.strftime('%Y年%m月%d日 %H時%M分')
             print(formatted_last_updated)
 
             # 時刻比較用
-            tokyo_tz = pytz.timezone('Asia/Tokyo')
             current_time = datetime.now(tokyo_tz).time()
-            # current_time = datetime.now().time()
             start_time = time(8, 0, 0)
             end_time = time(23, 59, 59)
             
