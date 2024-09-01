@@ -59,13 +59,17 @@ def main():
             res_json = json.loads(res)
             
             last_updated = res_json.get('lastUpdated', {})
+            print(last_updated)
             data = res_json.get('data', {})
             src = res_json.get('src', {})
 
             # 取得した最新更新時刻のフォーマット変換
             timestamp_s = last_updated / 1000
+            print(timestamp_s)
             dt = datetime.fromtimestamp(timestamp_s)
+            print(dt)
             formatted_last_updated = dt.strftime('%Y年%m月%d日 %H時%M分')
+            print(formatted_last_updated)
 
             # 時刻比較用
             tokyo_tz = pytz.timezone('Asia/Tokyo')
@@ -83,19 +87,7 @@ def main():
                         # 現在時刻が0時を過ぎていない
                         # rail['status']がlast_train_statusと異なる
                         # last_train_statusがNone
-                        print(current_time)
-                        print(type(rail['status']))
-                        print(rail['status'])
-                        print(type(last_train_status))
-                        print(last_train_status)
-                        if start_time <= current_time <= end_time:
-                            print("test1")
-                        if rail['status'] != last_train_status:
-                            print("test2")
-                        if last_train_status is None:
-                            print("test3")
                         if start_time <= current_time <= end_time and (rail['status'] != last_train_status or last_train_status is None):
-                            print("いふ")
                             send_to_line(line_access_token, user_id, rail, formatted_last_updated, src)
                             try:
                                 cursor.execute("""UPDATE train 
@@ -106,7 +98,6 @@ def main():
                             except Exception as e:
                                 print(f"Error updating {user_id}: {e}")
                         elif end_time < current_time:
-                            print("えるいふ")
                             try:
                                 cursor.execute("""UPDATE train 
                                                SET last_train_status = Null
@@ -116,7 +107,6 @@ def main():
                             except Exception as e:
                                 print(f"Error updating {user_id}: {e}")
                         else:
-                            print("えるす")
                             continue
 
     # 接続を閉じる
