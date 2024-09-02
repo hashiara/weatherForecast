@@ -87,6 +87,7 @@ def main():
                         # rail['status']がlast_train_statusと異なる
                         # last_train_statusがNone
                         if start_time <= current_time <= end_time and (rail['status'] != last_train_status or last_train_status is None):
+                            print("aaa")
                             send_to_line(line_access_token, user_id, rail, formatted_last_updated, src)
                             try:
                                 cursor.execute("""UPDATE train 
@@ -97,7 +98,7 @@ def main():
                             except Exception as e:
                                 print(f"Error updating {user_id}: {e}")
                         elif end_time < current_time:
-                            print("aaa")
+                            print("bbb")
                             try:
                                 cursor.execute("""UPDATE train 
                                                SET last_train_status = Null
@@ -107,6 +108,7 @@ def main():
                             except Exception as e:
                                 print(f"Error updating {user_id}: {e}")
                         else:
+                            print("ccc")
                             continue
 
     # 接続を閉じる
