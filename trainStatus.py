@@ -97,7 +97,7 @@ def main():
                                 connection.commit()
                             except Exception as e:
                                 print(f"Error updating {user_id}: {e}")
-                        elif end_time < current_time:
+                        elif current_time < start_time:
                             print("bbb")
                             try:
                                 cursor.execute("""UPDATE train 
