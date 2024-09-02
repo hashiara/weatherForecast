@@ -1,8 +1,8 @@
 name: trainStatus-batch
 on:
-  # push:
-    # branches:
-    #   - main
+  push:
+    branches:
+      - main
 
     # branches-ignore: #実行一時ストップ用
     #   - '**'

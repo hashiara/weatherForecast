@@ -59,25 +59,23 @@ def main():
             res_json = json.loads(res)
             
             last_updated = res_json.get('lastUpdated', {})
-            print(last_updated)
             data = res_json.get('data', {})
             src = res_json.get('src', {})
 
             # 取得した最新更新時刻のフォーマット変換
             tokyo_tz = pytz.timezone('Asia/Tokyo')
             timestamp_s = last_updated / 1000
-            print(timestamp_s)
             dt = datetime.fromtimestamp(timestamp_s)
-            print(dt)
             tokyo_dt = dt.replace(tzinfo=pytz.utc).astimezone(tokyo_tz)
-            print(tokyo_dt)
             formatted_last_updated = tokyo_dt.strftime('%Y年%m月%d日 %H時%M分')
-            print(formatted_last_updated)
 
             # 時刻比較用
             current_time = datetime.now(tokyo_tz).time()
             start_time = time(8, 0, 0)
             end_time = time(23, 59, 59)
+            print(current_time)
+            print(start_time)
+            print(end_time)
             
             # 路線情報メッセージ送信
             for area in data:
@@ -99,6 +97,7 @@ def main():
                             except Exception as e:
                                 print(f"Error updating {user_id}: {e}")
                         elif end_time < current_time:
+                            print("aaa")
                             try:
                                 cursor.execute("""UPDATE train 
                                                SET last_train_status = Null
