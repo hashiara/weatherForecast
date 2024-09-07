@@ -71,11 +71,8 @@ def main():
 
             # 時刻比較用
             current_time = datetime.now(tokyo_tz).time()
-            start_time = time(8, 0, 0)
+            start_time = time(6, 0, 0)
             end_time = time(23, 59, 59)
-            print(current_time)
-            print(start_time)
-            print(end_time)
             
             # 路線情報メッセージ送信
             for area in data:
@@ -87,7 +84,6 @@ def main():
                         # rail['status']がlast_train_statusと異なる
                         # last_train_statusがNone
                         if start_time <= current_time <= end_time and (rail['status'] != last_train_status or last_train_status is None):
-                            print("aaa")
                             send_to_line(line_access_token, user_id, rail, formatted_last_updated, src)
                             try:
                                 cursor.execute("""UPDATE train 
@@ -98,7 +94,6 @@ def main():
                             except Exception as e:
                                 print(f"Error updating {user_id}: {e}")
                         elif current_time < start_time:
-                            print("bbb")
                             try:
                                 cursor.execute("""UPDATE train 
                                                SET last_train_status = Null
@@ -108,7 +103,6 @@ def main():
                             except Exception as e:
                                 print(f"Error updating {user_id}: {e}")
                         else:
-                            print("ccc")
                             continue
 
     # 接続を閉じる
